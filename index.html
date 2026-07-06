@@ -13,6 +13,7 @@
     body {
       margin: 0;
       min-height: 100vh;
+      min-height: 100svh;
       font-family: Arial, sans-serif;
       background:
         linear-gradient(rgba(18, 9, 31, 0.25), rgba(18, 9, 31, 0.55)),
@@ -164,6 +165,109 @@
       margin-bottom: 8px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* МОБИЛЬНАЯ ВЕРСИЯ */
+    @media (max-width: 600px) {
+      body {
+        background:
+          linear-gradient(rgba(18, 9, 31, 0.25), rgba(18, 9, 31, 0.65)),
+          url("images/background-mobile.jpg") center / cover no-repeat,
+          radial-gradient(circle at top, #3b1d5f, #12091f);
+        align-items: flex-start;
+        padding: 14px;
+      }
+
+      .app {
+        max-width: 100%;
+        padding: 22px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        margin-bottom: 22px;
+      }
+
+      .dice-area {
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .dice-main {
+        width: 145px;
+        height: 145px;
+        border-radius: 26px;
+      }
+
+      .dice-main img {
+        width: 88px;
+        height: 88px;
+      }
+
+      .dice-main span {
+        font-size: 24px;
+      }
+
+      .dice-grid {
+        gap: 12px;
+      }
+
+      .dice-button {
+        width: 82px;
+        height: 82px;
+        border-radius: 18px;
+        padding: 8px;
+      }
+
+      .dice-button img {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 4px;
+      }
+
+      .dice-button span {
+        font-size: 15px;
+      }
+
+      .result-box {
+        padding: 20px;
+        border-radius: 16px;
+      }
+
+      .result {
+        font-size: 52px;
+        min-height: 65px;
+      }
+
+      .special-message {
+        font-size: 18px;
+        min-height: 24px;
+      }
+
+      .history {
+        margin-top: 20px;
+      }
+
+      .history h2 {
+        font-size: 18px;
+      }
+
+      .history-list {
+        min-height: 120px;
+        max-height: 120px;
+      }
+
+      .history-list li {
+        font-size: 14px;
+        padding: 7px 10px;
+      }
     }
   </style>
 </head>
