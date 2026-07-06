@@ -35,6 +35,8 @@
       border-radius: 24px;
       padding: 35px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
 
     h1 {
@@ -56,12 +58,11 @@
     }
 
     .mode-button {
-      border: none;
       border-radius: 999px;
       padding: 10px 18px;
       color: #fff;
       background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       cursor: pointer;
       font-size: 15px;
       font-weight: bold;
@@ -73,7 +74,7 @@
     }
 
     .mode-button.active {
-      background: linear-gradient(145deg, #ffd86b, #f107a3);
+      background: rgba(255, 216, 107, 0.8);
       color: #1b1028;
     }
 
@@ -95,23 +96,31 @@
     .dice-button {
       width: 100px;
       height: 100px;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.28);
       border-radius: 20px;
       padding: 10px;
       color: #fff;
-      background: linear-gradient(145deg, #7b2ff7, #f107a3);
+
+      background: rgba(123, 47, 247, 0.28);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+
       cursor: pointer;
-      transition: box-shadow 0.15s ease;
-      box-shadow: 0 8px 20px rgba(241, 7, 163, 0.3);
+      transition: box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 8px 20px rgba(241, 7, 163, 0.25);
 
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .dice-button:hover {
-      box-shadow: 0 12px 28px rgba(241, 7, 163, 0.45);
+      background: rgba(123, 47, 247, 0.4);
+      box-shadow: 0 12px 28px rgba(241, 7, 163, 0.4);
     }
 
     .dice-button img {
@@ -203,6 +212,7 @@
         background:
           linear-gradient(rgba(18, 9, 31, 0.25), rgba(18, 9, 31, 0.65)),
           url("images/background-mobile.jpg") center / cover no-repeat,
+          url("images/background.jpg") center / cover no-repeat,
           radial-gradient(circle at top, #3b1d5f, #12091f);
         align-items: flex-start;
         padding: 14px;
@@ -387,18 +397,10 @@
     function getRandomResult(sides) {
       const half = Math.floor(sides / 2);
 
-      // Обычный режим: честный бросок
       if (currentMode === "normal") {
         return Math.floor(Math.random() * sides) + 1;
       }
 
-      // Удача: 70% шанс на верхнюю половину чисел
-      // d20: чаще 11–20
-      // d12: чаще 7–12
-      // d10: чаще 6–10
-      // d8: чаще 5–8
-      // d6: чаще 4–6
-      // d4: чаще 3–4
       if (currentMode === "lucky") {
         const isHighRoll = Math.random() < 0.7;
 
@@ -409,13 +411,6 @@
         }
       }
 
-      // Проклятье: 70% шанс на нижнюю половину чисел
-      // d20: чаще 1–10
-      // d12: чаще 1–6
-      // d10: чаще 1–5
-      // d8: чаще 1–4
-      // d6: чаще 1–3
-      // d4: чаще 1–2
       if (currentMode === "unlucky") {
         const isLowRoll = Math.random() < 0.7;
 
@@ -425,6 +420,8 @@
           return Math.floor(Math.random() * (sides - half)) + half + 1;
         }
       }
+
+      return Math.floor(Math.random() * sides) + 1;
     }
 
     function getModeName() {
